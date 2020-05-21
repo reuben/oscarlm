@@ -9,8 +9,8 @@ import subprocess
 
 from collections import Counter
 from multiprocessing import Process, Queue
-from languages import LANGUAGE_CODES, get_language
-from utils import maybe_download, maybe_ungzip, join_files, section, log_progress, announce, parse_file_size
+from .languages import LANGUAGE_CODES, get_language
+from .utils import maybe_download, maybe_ungzip, join_files, section, log_progress, announce, parse_file_size
 
 STOP_TOKEN = False
 

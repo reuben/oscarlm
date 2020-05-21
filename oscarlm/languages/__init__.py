@@ -72,5 +72,6 @@ class LanguageBase:
 
 
 def get_language(code):
-    language_module = importlib.import_module('languages.' + code)
+    # from . import {code} - (aka import the corresponding sub-module inside languages)
+    language_module = importlib.import_module('.' + code, __name__)
     return language_module.Language()

@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
+set -e
 
 SW_DIR="${SW_DIR:-dependencies}"
 
 if [ ! -d venv ]; then
   python3 -m venv venv
   source venv/bin/activate
-  pip install -r requirements.txt
+  pip install -e .
   pip install `python oscarlm/taskcluster.py --decoder --branch v0.7.0-alpha.2`
   printf "\n ****** Installed Python packages ****** \n\n\n\n"
+else
+  source venv/bin/activate
 fi
 
 if [ ! -f "${SW_DIR}/kenlm/build/bin/lmplz" ]; then
@@ -30,9 +33,8 @@ if [ ! -f "${SW_DIR}/kenlm/build/bin/lmplz" ]; then
 fi
 
 if [ ! -f "${SW_DIR}/deepspeech/libdeepspeech.so" ]; then
-  source venv/bin/activate
   mkdir -p "${SW_DIR}/deepspeech"
-  python oscarlm/taskcluster.py --target "${SW_DIR}/deepspeech" --branch v0.6.0
+  python -m oscarlm.taskcluster --target "${SW_DIR}/deepspeech" --branch v0.6.0
   printf "\n ****** Installed DeepSpeech tools ****** \n\n\n\n"
 fi
 

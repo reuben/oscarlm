@@ -1,9 +1,5 @@
-
-import sys
-sys.path.insert(0, '../..')
-
 import re
-from languages import LanguageBase
+from . import LanguageBase
 
 
 class Language(LanguageBase):
