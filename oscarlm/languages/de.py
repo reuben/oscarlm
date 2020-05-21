@@ -4,7 +4,7 @@ from . import LanguageBase
 
 class Language(LanguageBase):
     def __init__(self):
-        super(Language, self).__init__(__file__)
+        super(Language, self).__init__('de')
         self.alphabet += 'äöüß'
         self.substitutions = [
             (re.compile(r'\$'), 'dollar'),
